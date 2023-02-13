@@ -11,9 +11,9 @@ let strToDisplay = "";
 
 const operator = ["+", "-", "*", "/"];
 
-let lastOperator = "";
-
 let allowDot = true;
+
+const audio = new Audio("abcd.mp3");
 
 btnArgs.map((item, i) => {
   item.addEventListener("click", () => {
@@ -51,7 +51,6 @@ btnArgs.map((item, i) => {
       if (!strToDisplay) {
         return;
       }
-      lastOperator = val;
 
       allowDot = true;
 
@@ -64,13 +63,13 @@ btnArgs.map((item, i) => {
     }
 
     if (val === ".") {
-      if (!allowdot) {
+      if (!allowDot) {
         return;
       }
       allowDot = false;
     }
 
-    if (val === "." && !allowdot) strToDisplay += val;
+    strToDisplay += val;
     display(strToDisplay);
   });
 });
@@ -88,9 +87,10 @@ const total = () => {
     displayElm.style.color = "white";
 
     displayElm.classList.add("prank");
+    audio.play();
   }
 
-  const ttl = eval(strToisplay) + extra;
+  const ttl = eval(strToDisplay) + extra;
   strToDisplay = ttl;
 
   display(strToDisplay);
@@ -100,5 +100,3 @@ const randomNumber = () => {
   const num = Math.round(Math.random() * 10);
   return num <= 3 ? num : 0;
 };
-
-console.log(btnArgs);
